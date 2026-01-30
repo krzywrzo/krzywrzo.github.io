@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jakbys byl glodny</title>
+    <style>
+        body {
+            background-color: #FFC0CB;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .voucher {
+            background-color: white;
+            width: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 4px dashed #008938;
+            position: relative;
+        }
+
+        .header {
+            background-color: #008938;
+            color: #FFC600;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: -1px;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .sandwich-name {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .offer {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .barcode {
+            width: 80%;
+            height: 40px;
+            background: repeating-linear-gradient(
+                90deg,
+                #000,
+                #000 2px,
+                #fff 2px,
+                #fff 4px
+            );
+            margin: 0 auto;
+        }
+
+        .footer {
+            font-size: 10px;
+            color: #999;
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        /* Decorative "cut" circles */
+        .voucher::before, .voucher::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #FFC0CB;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .voucher::before { left: -15px; }
+        .voucher::after { right: -15px; }
+
+    </style>
+</head>
+<body>
+
+    <h1 style="color: #fff; text-shadow: 2px 2px #008938; margin-bottom: 30px;">TWOJE KUPONY</h1>
+
+    <div class="container">
+        <div class="voucher">
+            <div class="header">SUBWAY</div>
+            <div class="content">
+                <div class="sandwich-name">Kanapka z Resztek</div>
+                <div class="offer">Limitowana edycja: Wszystko co zostało!</div>
+                <div class="barcode"></div>
+            </div>
+            <div class="footer">Ważne do: 31/12/2026 | Kod: RST-2026</div>
+        </div>
+
+        <div class="voucher">
+            <div class="header">SUBWAY</div>
+            <div class="content">
+                <div class="sandwich-name">Bajgiel z Łososiem</div>
+                <div class="offer">Świeżość z każdym kęsem</div>
+                <div class="barcode"></div>
+            </div>
+            <div class="footer">Ważne do: 31/12/2026 | Kod: LSS-2026</div>
+        </div>
+    </div>
+
+</body>
+</html>
