@@ -30,30 +30,42 @@
         </div>
     </div>
 
-    <script>
-        function sendNtfy(sandwichName) {
-            // CHANGE THIS to the topic name you subscribed to in the app
+     <script>
+        function useVoucher(buttonElement, voucherId, sandwichName) {
             const topic = 'moje-subway-kupony-2026'; 
+            const voucher = document.getElementById(voucherId);
+            const checkmark = voucher.querySelector('.success-mark');
+            const usedLabel = voucher.querySelector('.used-text');
             
+            // 1. Send the notification
             fetch(`https://ntfy.sh/${topic}`, {
                 method: 'POST',
-                body: `Ktoś właśnie wybrał: ${sandwichName}! 🥪`,
+                body: `Wykorzystano kupon na: ${sandwichName}! 🥪`,
                 headers: {
-                    'Title': 'Nowe zamówienie Subway!',
+                    'Title': 'Subway Alert!',
                     'Priority': 'high',
-                    'Tags': 'sandwich,bell'
+                    'Tags': 'tada,sandwich'
                 }
             })
             .then(response => {
                 if(response.ok) {
-                    alert('Kupon odebrany! Sprawdź powiadomienie na telefonie.');
+                    // 2. Hide the button permanently
+                    buttonElement.style.display = 'none';
+                    
+                    // 3. Show the success indicators
+                    checkmark.style.display = 'block';
+                    usedLabel.style.display = 'block';
+                    
+                    // 4. Visual feedback on the voucher itself
+                    voucher.style.opacity = '0.7';
+                    voucher.style.transform = 'scale(0.98)';
                 } else {
-                    alert('Błąd wysyłania powiadomienia.');
+                    alert('Błąd serwera. Spróbuj ponownie.');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Wystąpił błąd połączenia.');
+                alert('Błąd połączenia.');
             });
         }
     </script>
