@@ -159,6 +159,10 @@ body {
     text-align: center;
     font-size: 26px; 
     text-shadow: 2px 2px 0px var(--dark-pink); 
+    
+    /* These lines move it down and round the corners */
+    margin: 10px 10px 0 10px; 
+    border-radius: 10px;
 }
 
 .content {
