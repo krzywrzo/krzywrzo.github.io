@@ -1,63 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kupony Subway - New Look</title>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <h1 class="header-title">TWOJE KUPONY</h1>
-
-    <div class="container">
-        <div class="voucher">
-            <div class="v-header">SUBWAY</div>
-            <div class="content">
-                <div class="sandwich-name">Kanapka z Resztek</div>
-                <button class="claim-btn" onclick="sendNtfy('Kanapka z Resztek')">WYKORZYSTAJ</button>
-            </div>
-            <div class="footer">KOD: RST-2026 | WAŻNE: 24H</div>
-        </div>
-
-        <div class="voucher">
-            <div class="v-header">SUBWAY</div>
-            <div class="content">
-                <div class="sandwich-name">Bajgiel z Łososiem</div>
-                <button class="claim-btn" onclick="sendNtfy('Bajgiel z Łososiem')">WYKORZYSTAJ</button>
-            </div>
-            <div class="footer">KOD: LSS-2026 | WAŻNE: 24H</div>
-        </div>
-    </div>
-
-    <script>
-        function sendNtfy(sandwichName) {
-            // Must match the topic you subscribe to in the ntfy app
-            const topic = 'moje-subway-kupony-2026'; 
-            
-            fetch(`https://ntfy.sh/${topic}`, {
-                method: 'POST',
-                body: `Wybrano: ${sandwichName}! Przygotuj składniki! 🥯🥪`,
-                headers: {
-                    'Title': 'Nowe Zamówienie!',
-                    'Priority': '5', // High priority
-                    'Tags': 'pink_heart,turquoise_heart'
-                }
-            })
-            .then(res => {
-                if(res.ok) {
-                    alert('Powiadomienie wysłane! Smacznego!');
-                }
-            })
-            .catch(err => console.error('Błąd:', err));
-        }
-    </script>
-
-</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -80,17 +20,17 @@
 </head>
 <body>
     <div class="voucher">
-        <h2>SUBWAY STYLE</h2>
+        <h2>KRIS ❤️</h2>
         <p><strong>KANAPKA Z RESZTEK</strong></p>
         <small>Ważne do: 22.05.2026</small>
     </div>
 
     <div class="voucher">
-        <h2>SUBWAY STYLE</h2>
+        <h2>MARTYNKA ❤️</h2>
         <p><strong>BAJGIEL Z ŁOSOSIEM</strong></p>
         <small>Ważne do: 22.05.2026</small>
     </div>
 
-    <a href="subpage.html" class="back-link footer-link">← POWRÓT DO BILETU</a>
+    <a href="ticket.html" class="back-link footer-link">← POWRÓT DO BILETU</a>
 </body>
 </html>
