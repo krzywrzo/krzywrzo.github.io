@@ -3,40 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TACO TĘDY - Home</title>
+    <title>Wejdź do Subway</title>
     <style>
         body {
-            background-color: #FFC0CB;
+            background-color: #FFC0CB; /* Light Pink */
+            font-family: 'Arial Black', Gadget, sans-serif;
             margin: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            font-family: sans-serif;
+            overflow: hidden;
         }
-        h1 {
+
+        .portal-container {
             text-align: center;
+        }
+
+        .welcome-text {
+            color: #D02090; /* Darker Pink */
             font-size: 3rem;
+            text-shadow: 3px 3px 0px #40E0D0; /* Turquoise Shadow */
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        a {
-            margin-top: 20px;
-            text-decoration: none;
-            color: #333;
+
+        .go-button {
+            background-color: #40E0D0; /* Turquoise */
+            color: white;
+            border: 5px solid #D02090; /* Darker Pink Border */
+            padding: 22px 60px;
+            font-size: 1.6rem;
             font-weight: bold;
-            border: 1px solid #333;
-            padding: 10px 20px;
-            border-radius: 5px;
+            text-decoration: none;
+            border-radius: 15px; /* Slightly more blocky like a voucher */
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 0 #D02090;
+            cursor: pointer;
+            text-transform: uppercase;
         }
-        a:hover {
-            background-color: white;
+
+        .go-button:hover {
+            transform: scale(1.05);
+            background-color: #36cfbf;
+            box-shadow: 0 12px 0 #D02090;
+        }
+
+        .go-button:active {
+            transform: translateY(8px);
+            box-shadow: 0 2px 0 #D02090;
+        }
+
+        /* Floating decoration with new colors */
+        .decoration {
+            position: absolute;
+            font-size: 3.5rem;
+            opacity: 0.3;
+            z-index: -1;
+            filter: drop-shadow(2px 2px 0px #D02090);
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
         }
     </style>
 </head>
 <body>
 
-    <h1 font-size: 1000px>TACO TĘDY</h1>
-    <a href="subpage.html">Go to Subpage</a>
+    <div class="decoration" style="top: 15%; left: 10%;">🥪</div>
+    <div class="decoration" style="bottom: 20%; right: 10%;">🥯</div>
+    <div class="decoration" style="top: 25%; right: 20%;">🥗</div>
+
+    <div class="portal-container">
+        <h1 class="welcome-text">Głodny?</h1>
+        <a href="kupony.html" class="go-button">ODBIERZ SWOJE KUPONY</a>
+    </div>
 
 </body>
 </html>
