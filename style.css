@@ -4,6 +4,9 @@
     --dark-pink: #D02090;
     --turquoise: #40E0D0;
     --white: #ffffff;
+    /* Added missing variables for the Ticket section */
+    --ticket-white: #ffffff;
+    --accent-dark: #333333;
 }
 
 body {
@@ -16,6 +19,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     overflow-x: hidden;
+    padding: 20px; /* Added padding for mobile breathing room */
 }
 
 /* --- Entry Page Styles --- */
@@ -86,6 +90,21 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Punched out holes for vouchers */
+.voucher::before, .voucher::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: var(--light-pink);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+.voucher::before { left: -25px; }
+.voucher::after { right: -25px; }
+
 .v-header {
     background-color: var(--turquoise);
     color: white;
@@ -112,186 +131,108 @@ body {
     text-transform: uppercase;
 }
 
-.claim-btn {
-    background-color: var(--dark-pink);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: all 0.2s;
-    box-shadow: 0 5px 0 #9c186c;
+/* --- Ticket Page Styles (The Hemingway Pass) --- */
+.ticket {
+    background: var(--ticket-white);
+    width: 100%;
+    max-width: 500px;
+    margin-top: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.ticket-main {
+    padding: 30px;
+    border-bottom: 2px dashed var(--light-pink); /* Fixed variable name */
+    position: relative;
+}
+
+/* Punched out holes for Ticket */
+.ticket-main::before, .ticket-main::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--light-pink); /* Fixed variable name */
+    border-radius: 50%;
+}
+.ticket-main::before { left: -15px; }
+.ticket-main::after { right: -15px; }
+
+.artist-name {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.tour-name {
+    font-size: 2rem;
+    font-weight: 900;
+    margin: 0;
+    color: var(--accent-dark);
+}
+
+.details {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.label {
+    font-size: 0.7rem;
+    color: #999;
     text-transform: uppercase;
 }
 
-.claim-btn:active {
-    transform: translateY(3px);
-    box-shadow: 0 2px 0 #9c186c;
-}
-
-/* --- Success State --- */
-.success-mark {
-    display: none;
-    color: var(--turquoise);
-    font-size: 50px;
-    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.used-text {
-    display: none;
-    color: var(--turquoise);
-    font-size: 14px;
+.value {
+    font-size: 1rem;
     font-weight: bold;
-    margin-top: 5px;
+    color: var(--accent-dark);
 }
 
-@keyframes popIn {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* --- Decorations & Footer --- */
-.decoration {
-    position: absolute;
-    font-size: 3.5rem;
-    opacity: 0.3;
-    z-index: -1;
-    filter: drop-shadow(2px 2px 0px var(--dark-pink));
-    animation: float 5s infinite ease-in-out;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-30px) rotate(10deg); }
-}
-
-.footer {
-    font-size: 11px;
-    color: #888;
-    padding: 15px;
-    text-align: center;
-    border-top: 2px solid var(--light-pink);
+.ticket-footer {
+    padding: 20px 30px;
     background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.voucher::before, .voucher::after {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-color: var(--light-pink);
-    border-radius: 50%;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
+.barcode {
+    width: 100%;
+    height: 50px;
+    background: repeating-linear-gradient(
+        90deg,
+        #333,
+        #333 2px,
+        transparent 2px,
+        transparent 4px,
+        #333 4px,
+        #333 5px,
+        transparent 5px,
+        transparent 8px
+    );
+    margin-bottom: 10px;
 }
-.voucher::before { left: -25px; }
-.voucher::after { right: -25px; }
 
-.ticket {
-            background: var(--ticket-white);
-            width: 100%;
-            max-width: 500px;
-            margin-top: 50px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-        }
+.back-link {
+    margin: 20px 0;
+    text-decoration: none;
+    color: var(--accent-dark);
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+    text-align: center;
+}
 
-        /* Ticket Top Section */
-        .ticket-main {
-            padding: 30px;
-            border-bottom: 2px dashed var(--pink-bg);
-            position: relative;
-        }
-
-        /* Perforated holes effect */
-        .ticket-main::before, .ticket-main::after {
-            content: "";
-            position: absolute;
-            bottom: -15px;
-            width: 30px;
-            height: 30px;
-            background-color: var(--pink-bg);
-            border-radius: 50%;
-        }
-        .ticket-main::before { left: -15px; }
-        .ticket-main::after { right: -15px; }
-
-        .artist-name {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #777;
-            margin-bottom: 5px;
-        }
-
-        .tour-name {
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0;
-            color: var(--accent-dark);
-        }
-
-        .details {
-            margin-top: 25px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .label {
-            font-size: 0.7rem;
-            color: #999;
-            text-transform: uppercase;
-        }
-
-        .value {
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--accent-dark);
-        }
-
-        /* Ticket Bottom Section (Barcode) */
-        .ticket-footer {
-            padding: 20px 30px;
-            background: #fafafa;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .barcode {
-            width: 100%;
-            height: 50px;
-            background: repeating-linear-gradient(
-                90deg,
-                #333,
-                #333 2px,
-                transparent 2px,
-                transparent 4px,
-                #333 4px,
-                #333 5px,
-                transparent 5px,
-                transparent 8px
-            );
-            margin-bottom: 10px;
-        }
-
-        .back-link {
-            margin-top: 40px;
-            text-decoration: none;
-            color: var(--accent-dark);
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: opacity 0.2s;
-        }
-
-        .back-link:hover {
-            opacity: 0.6;
-        }
+.back-link:hover {
+    opacity: 0.6;
+}
