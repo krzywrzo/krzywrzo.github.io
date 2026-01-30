@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jakbys byl glodny</title>
+    <title>Kupony Subway</title>
     <style>
         body {
             background-color: #FFC0CB;
@@ -31,6 +31,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             border: 4px dashed #008938;
             position: relative;
+            padding-bottom: 20px;
         }
 
         .header {
@@ -54,24 +55,22 @@
             text-transform: uppercase;
         }
 
-        .offer {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 20px;
-            font-weight: normal;
+        .claim-btn {
+            background-color: #FFC600;
+            color: #008938;
+            border: none;
+            padding: 10px 25px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 0 #d4a600;
         }
 
-        .barcode {
-            width: 80%;
-            height: 40px;
-            background: repeating-linear-gradient(
-                90deg,
-                #000,
-                #000 2px,
-                #fff 2px,
-                #fff 4px
-            );
-            margin: 0 auto;
+        .claim-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #d4a600;
         }
 
         .footer {
@@ -80,9 +79,10 @@
             padding: 10px;
             text-align: center;
             border-top: 1px solid #eee;
+            margin-top: 15px;
         }
 
-        /* Decorative "cut" circles */
+        /* Ticket cut-outs */
         .voucher::before, .voucher::after {
             content: "";
             position: absolute;
@@ -95,7 +95,6 @@
         }
         .voucher::before { left: -15px; }
         .voucher::after { right: -15px; }
-
     </style>
 </head>
 <body>
@@ -107,8 +106,7 @@
             <div class="header">SUBWAY</div>
             <div class="content">
                 <div class="sandwich-name">Kanapka z Resztek</div>
-                <div class="offer">Limitowana edycja: Wszystko co zostało!</div>
-                <div class="barcode"></div>
+                <button class="claim-btn" onclick="sendNtfy('Kanapka z Resztek')">ODBIERZ KUPON</button>
             </div>
             <div class="footer">Ważne do: 31/12/2026 | Kod: RST-2026</div>
         </div>
@@ -117,12 +115,39 @@
             <div class="header">SUBWAY</div>
             <div class="content">
                 <div class="sandwich-name">Bajgiel z Łososiem</div>
-                <div class="offer">Świeżość z każdym kęsem</div>
-                <div class="barcode"></div>
+                <button class="claim-btn" onclick="sendNtfy('Bajgiel z Łososiem')">ODBIERZ KUPON</button>
             </div>
             <div class="footer">Ważne do: 31/12/2026 | Kod: LSS-2026</div>
         </div>
     </div>
+
+    <script>
+        function sendNtfy(sandwichName) {
+            // CHANGE THIS to the topic name you subscribed to in the app
+            const topic = 'moje-subway-kupony-2026'; 
+            
+            fetch(`https://ntfy.sh/${topic}`, {
+                method: 'POST',
+                body: `Ktoś właśnie wybrał: ${sandwichName}! 🥪`,
+                headers: {
+                    'Title': 'Nowe zamówienie Subway!',
+                    'Priority': 'high',
+                    'Tags': 'sandwich,bell'
+                }
+            })
+            .then(response => {
+                if(response.ok) {
+                    alert('Kupon odebrany! Sprawdź powiadomienie na telefonie.');
+                } else {
+                    alert('Błąd wysyłania powiadomienia.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Wystąpił błąd połączenia.');
+            });
+        }
+    </script>
 
 </body>
 </html>
